@@ -34,16 +34,16 @@ import os
 import sys
 
 try:
-    dn = idaapi.idadir("plugins\\Code editor")
+    code_editor_path = os.path.join('plugins', 'Code editor')
+    dn = idaapi.idadir(code_editor_path)
 except NameError:
     dn = os.getcwd()
 sys.path.insert(0, dn)
-sys.path.insert(0, os.getcwd()+r'\icons')
+sys.path.insert(0, os.path.join(os.getcwd(), "icons"))
 
 import PyQt5
 from PyQt5 import QtCore, QtGui, Qsci, QtWidgets
-from PyQt5.Qsci import QsciScintilla, QsciLexerPython, QsciAPIs, \
-    QsciScintillaBase
+from PyQt5.Qsci import QsciScintilla, QsciLexerPython, QsciAPIs, QsciScintillaBase
 from PyQt5.QtGui import QFont, QFontMetrics, QColor, QTextCursor
 from PyQt5.QtWidgets import QMainWindow, QDialog, QMessageBox, QDesktopWidget, QWidget
 from PyQt5.QtCore import pyqtSignal, pyqtSlot, QObject, QEvent, QCoreApplication
@@ -308,9 +308,9 @@ class Ui_MainWindow(object):
         self.lexer.setEolFill(True)
         #api test not working
         api = Qsci.QsciAPIs(self.lexer)
-        API_FILE = dn+'\\Python.api'
-        API_FILE2 = dn+'\\idc.api'
-        API_FILE3 = dn+'\\idaapi.api'
+        API_FILE = os.path.join(dn, "Python.api")
+        API_FILE2 = os.path.join(dn, "idc.api")
+        API_FILE3 = os.path.join(dn, "idaapi.api")
         api.load(API_FILE)
         api.load(API_FILE2)
         api.load(API_FILE3)

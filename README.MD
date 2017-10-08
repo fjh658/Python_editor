@@ -39,7 +39,10 @@ https://github.com/techbliss/Ida_Pro_Ultimate_Qt_Build_Guide
 if you need help with this.
 Contact me here [Techbliss](http://www.techbliss.org/threads/ida-pro-prebuild-pyqt4-ida-pro_pyqt5-regular-python-2-7x86.683/)
 
-
+### macOS:
+```shell
+brew install qscintilla2
+```
 
 Running other Qt apps within the editor
 

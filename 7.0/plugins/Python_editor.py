@@ -5,7 +5,12 @@ import idc
 from idc import *
 from idaapi import *
 import sys
-sys.path.insert(0 , idaapi.idadir("plugins\\Code editor\\icons"))
+import os
+
+code_editor_path = os.path.join('plugins', 'Code editor')
+icons_path = os.path.join(code_editor_path, 'icons')
+sys.path.insert(0 , idaapi.idadir(icons_path))
+
 import ico
 from ico import *
 
@@ -33,8 +38,8 @@ class MyEditorHandler(idaapi.action_handler_t):
     # Run editor when invoked.
     def activate(self, ctx):
         g = globals()
-        idahome = idaapi.idadir("plugins\\Code editor")
-        IDAPython_ExecScript(idahome + "\\pyeditor.py", g)
+        idahome = idaapi.idadir(code_editor_path)
+        IDAPython_ExecScript(os.path.join(idahome, "pyeditor.py"), g)
 
     def update(self, ctx):
         return idaapi.AST_ENABLE_ALWAYS
